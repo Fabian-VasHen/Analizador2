@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Analizador CNA</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Sistema de Alineación Institucional – USERENA - CNA</h1>
+    <form method="POST">
+        <label for="actividad" style="display: block; margin-bottom: 10px;">Describe la actividad Institucional a analizar:</label>
+        <textarea name="actividad" id="actividad" required>{{ texto }}</textarea><br>
+        <input type="submit" value="Analizar">
+    </form>
+
+    {% if resultados %}
+        <h2>Resultados de Similitud:</h2>
+        <table>
+            <tr>
+                <th>Dimensión</th>
+                <th>Criterio</th>
+                <th>Nivel</th>
+                <th>Porcentaje de Afinidad</th>
+            </tr>
+            {% for r in resultados %}
+            <tr>
+                <td>{{ r.dimension }}</td>
+                <td>{{ r.criterio }}</td>
+                <td>{{ r.nivel }}</td>
+                <td>
+                    <span style="
+                         display: inline-block;
+                         width: 12px;
+                         height: 12px;
+                         border-radius: 50%;
+                         margin-right: 6px;
+                         background-color: {% if r.porcentaje <= 50 %}red{% elif r.porcentaje <= 79 %}orange{% else %}green{% endif %};
+                     "></span>
+                    {{ r.porcentaje }}%
+                </td>
+
+            </tr>
+            {% endfor %}
+        </table>
+        <p style="margin-top: 20px; font-style: italic; color: #555;">
+     Se recomienda utilizar afinidad mayor al <strong>80%.</strong>
+</p>
+    {% endif %}
+</body>
+</html>
