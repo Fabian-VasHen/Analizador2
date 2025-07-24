@@ -4,9 +4,19 @@
     <meta charset="UTF-8">
     <title>Analizador CNA</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .logo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            height: 60px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Sistema de Alineación Institucional – USERENA - CNA</h1>
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo USERENA" class="logo">
+
+    <h1>Guía de Alineación Institucional – USERENA - CNA</h1>
     <form method="POST">
         <label for="actividad" style="display: block; margin-bottom: 10px;">Describe la actividad Institucional a analizar:</label>
         <textarea name="actividad" id="actividad" required>{{ texto }}</textarea><br>
@@ -34,17 +44,16 @@
                          height: 12px;
                          border-radius: 50%;
                          margin-right: 6px;
-                         background-color: {% if r.porcentaje <= 50 %}red{% elif r.porcentaje <= 79 %}orange{% else %}green{% endif %};
+                         background-color: {% if r.porcentaje <= 50 %}red{% elif r.porcentaje <= 69 %}orange{% else %}green{% endif %};
                      "></span>
                     {{ r.porcentaje }}%
                 </td>
-
             </tr>
             {% endfor %}
         </table>
         <p style="margin-top: 20px; font-style: italic; color: #555;">
-     Se recomienda utilizar afinidad mayor al <strong>80%.</strong>
-</p>
+            Se recomienda utilizar afinidad mayor al <strong>70%.</strong>
+        </p>
     {% endif %}
 </body>
 </html>

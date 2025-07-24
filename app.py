@@ -2,7 +2,7 @@ from flask import Flask, request, render_template
 from sentence_transformers import SentenceTransformer, util
 
 app = Flask(__name__)
-model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
+model = SentenceTransformer('paraphrase-albert-small-v2')
 
 # Estructura de criterios CNA con niveles
 criterios = [
