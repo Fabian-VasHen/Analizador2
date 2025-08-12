@@ -1,18 +1,4 @@
-from flask import Flask, request, render_template
-from sentence_transformers import SentenceTransformer, util
-
-# Inicializar Flask
-app = Flask(__name__)
-
-# Modelo de embeddings
-#model = SentenceTransformer('paraphrase-albert-small-v2')
-model = SentenceTransformer('all-mpnet-base-v2')
-
-
-# Lista con todos los párrafos numerados del CNA
-# (Extraído y numerado manualmente del documento CNA)
-# Estructura: dimensión, criterio, nivel, num_parrafo, texto
-parrafos_cna = [
+[
     {
         "dimension": "I Docencia y Resultados del Proceso Formativo",
         "criterio": "Criterio 1: Modelo educativo y diseño curricular",
@@ -735,36 +721,3 @@ parrafos_cna = [
         "texto": "Existen mecanismos para analizar, evaluar y fomentar, de manera sistemática, la contribución de las actividades de investigación, creación y/o innovación a la formación de las y los estudiantes en todos los niveles."
     }
 ]
-
-# Precalcular embeddings para cada párrafo
-for p in parrafos_cna:
-    p["embedding"] = model.encode(p["texto"], convert_to_tensor=True)
-
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    resultados = []
-    texto_ingresado = ""
-
-    if request.method == 'POST':
-        texto_ingresado = request.form.get('actividad', '')
-        if texto_ingresado:
-            texto_embedding = model.encode(texto_ingresado, convert_to_tensor=True)
-
-            for p in parrafos_cna:
-                similitud = util.cos_sim(texto_embedding, p["embedding"]).item()
-                resultados.append({
-                    "dimension": p["dimension"],
-                    "criterio": p["criterio"],
-                    "nivel": p["nivel"],
-                    "parrafo_num": p["parrafo_num"],
-                    "porcentaje": round(similitud * 100, 2)
-                })
-
-            # Ordenar y dejar solo los 3 mejores
-            resultados.sort(key=lambda x: x["porcentaje"], reverse=True)
-            resultados = resultados[:3]
-
-    return render_template('index.html', resultados=resultados, texto=texto_ingresado)
-
-if __name__ == '__main__':
-    app.run(host="127.0.0.1", port=5050, debug=True)

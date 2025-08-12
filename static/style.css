@@ -1,41 +1,135 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 40px;
-    background-color: #f9f9f9;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    background-color: #fafafa;
+    color: #333;
+}
+
+header {
+    background-color: white;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+}
+
+header img {
+    height: 70px;
+    margin-right: 10px;
+    margin-left: 40px;
+}
+
+header h1 {
+    font-size: 18px;
+    margin: 0;
+    font-weight: normal;
+    line-height: 1.3;
+}
+
+main {
+    max-width: 1100px; /* antes 900px */
+    margin: 0px auto;
+    background: #fafafa;
+    padding: 10px;
+}
+
+h2, h3 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
 }
 
 textarea {
-    width: 100%;
-    height: 150px;
-    margin-bottom: 20px;
-    padding: 10px;
+    width: 97%;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 12px;
+    resize: vertical;
+    min-height: 100px;
+    box-shadow: 0px 1px 3px rgba(0,0,0,0.05);
+    outline: none;
+}
+
+button {
+    display: block;
+    align-items: left;
+    margin-top: 10px;
+    padding: 12px 40px;
+    font-size: 16px;
+    background-color: #f50057; /* rosado */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #d4004d;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 15px;
+    table-layout: fixed; /* mantiene proporciones */
 }
 
 th, td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: left;
+    padding: 12px; /* más espacio */
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    word-wrap: break-word; /* permite cortar textos largos */
 }
 
 th {
-    background-color: #eee;
+    background-color: #f4f4f4;
 }
 
-input[type="submit"] {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #000000b0;
-    color: white;
+td:last-child {
+    font-weight: bold;
+    }
+
+hr {
     border: none;
-    cursor: pointer;
+    border-top: 2px solid #ddd;
+    margin-top: 30px;
+}
+.site-footer {
+  background-color: #f50057; /* color rosado */
+  color: rgb(255, 255, 255);
+  text-align: center;
+  padding: 6px 6px;
+  font-size: 12px;
+  font-weight: 500;
+  position: fixed;      /* para que quede fijo al fondo de la ventana */
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -2px 5px rgba(255, 255, 255, 0);
+}
+p {
+    text-align: center;
+    font-size: 12px;
+    color: #555;
+    margin-top: 60px;
+    font-style: italic;
 }
 
-input[type="submit"]:hover {
-    background-color: #000000;
+.titulo{
+  display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate  
 }

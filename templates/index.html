@@ -2,58 +2,64 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Analizador CNA</title>
+    <title>Guía de Alineación Institucional - Userena CNA</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <style>
-        .logo {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            height: 60px;
-        }
-    </style>
 </head>
 <body>
-    <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo USERENA" class="logo">
+    <header>
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo Universidad de La Serena">
+       
+    </header>
 
-    <h1>Guía de Alineación Institucional – USERENA - CNA</h1>
-    <form method="POST">
-        <label for="actividad" style="display: block; margin-bottom: 10px;">Describe la actividad Institucional a analizar:</label>
-        <textarea name="actividad" id="actividad" required>{{ texto }}</textarea><br>
-        <input type="submit" value="Analizar">
-    </form>
+    <main>
+        <div class="header">
+<div class="titulo">Guía de Alineación Institucional - Userena CNA
+<div style="text-align:right;">
+<a href="{{ url_for('static', filename='documento-cna.pdf') }}" class="back-link" target="_blank">
+<img src="{{ url_for('static', filename='pdf-cna.png') }}" alt="Documento CNA" style="height: 50px; vertical-align: middle;">
+</a>
+</div>
+</div>
+        </div>
+        
 
-    {% if resultados %}
-        <h2>Resultados de Similitud:</h2>
+        <label for="actividad">Describe la actividad institucional a analizar:</label>
+        <form method="post">
+            <textarea id="actividad" name="actividad">{{ texto }}</textarea>
+            <button type="submit">Analizar</button>
+        </form>
+<hr>
+
+
+
+        {% if resultados %}
+        <h3>Resultados de similitud:</h3>
         <table>
             <tr>
                 <th>Dimensión</th>
                 <th>Criterio</th>
                 <th>Nivel</th>
-                <th>Porcentaje de Afinidad</th>
+                <th>Párrafo</th>
+                <th>Similitud (%)</th>
             </tr>
             {% for r in resultados %}
             <tr>
                 <td>{{ r.dimension }}</td>
                 <td>{{ r.criterio }}</td>
                 <td>{{ r.nivel }}</td>
-                <td>
-                    <span style="
-                         display: inline-block;
-                         width: 12px;
-                         height: 12px;
-                         border-radius: 50%;
-                         margin-right: 6px;
-                         background-color: {% if r.porcentaje <= 50 %}red{% elif r.porcentaje <= 69 %}orange{% else %}green{% endif %};
-                     "></span>
-                    {{ r.porcentaje }}%
-                </td>
+                <td>{{ r.parrafo_num }}</td>
+                <td>{{ "%.2f"|format(r.porcentaje) }}%</td>
             </tr>
             {% endfor %}
         </table>
-        <p style="margin-top: 20px; font-style: italic; color: #555;">
-            Se recomienda utilizar afinidad mayor al <strong>70%.</strong>
-        </p>
-    {% endif %}
+        {% endif %}
+        <p><i>El modelo no reemplaza el juicio humano: entrega sugerencias, no decisiones.</i></p>
+        
+    </main>
+    <!-- HTML -->
+<footer class="site-footer">
+  <bold>© 2025 - Desarrollado por la Universidad de la Serena.</bold> 
+</footer>
+
 </body>
 </html>
