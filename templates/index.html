@@ -44,11 +44,11 @@
             </tr>
             {% for r in resultados %}
             <tr>
-                <td>{{ r.dimension }}</td>
-                <td>{{ r.criterio }}</td>
-                <td>{{ r.nivel }}</td>
-                <td>{{ r.parrafo_num }}</td>
-                <td>{{ "%.2f"|format(r.porcentaje) }}%</td>
+                <td title="Párrafo:&#10;{{ r.texto|escape }}">{{ r.dimension }}</td>
+                <td title="Párrafo:&#10;{{ r.texto|escape }}">{{ r.criterio }}</td>
+                <td title="Párrafo:&#10;{{ r.texto|escape }}">{{ r.nivel }}</td>
+                <td title="Párrafo:&#10;{{ r.texto|escape }}">{{ r.parrafo_num }}</td>
+                <td title="Párrafo:&#10;{{ r.texto|escape }}">{{ "%.2f"|format(r.porcentaje) }}%</td>
             </tr>
             {% endfor %}
         </table>

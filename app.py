@@ -40,6 +40,7 @@ def index():
                     "criterio": p["criterio"],
                     "nivel": p["nivel"],
                     "parrafo_num": p["parrafo_num"],
+                    "texto": p["texto"],
                     "porcentaje": round(similitud * 100, 2)
                 })
 
